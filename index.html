@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel do Aprendiz | João Pedro Arruda de Souza</title>
+  <meta name="description" content="Acompanhamento do Programa de Aprendizagem Profissional em tempo real">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    
+    <!-- Top Header -->
+    <header class="top-nav">
+      <div class="nav-brand">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+          </svg>
+        </div>
+        <div class="brand-texts">
+          <span class="brand-badge">Programa de Aprendizagem</span>
+          <h1 class="brand-title">Acompanhamento do Aprendiz</h1>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <div class="user-chip">
+          <div class="user-avatar">JP</div>
+          <div class="user-info">
+            <span class="user-name">João Pedro Arruda de Souza</span>
+            <span class="user-meta">
+              <span class="status-indicator"></span> Ativo • 6h diárias (20% B)
+            </span>
+          </div>
+        </div>
+
+        <button id="themeToggle" class="btn-icon" aria-label="Alternar tema claro/escuro" title="Alternar tema">
+          <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="main-content">
+      
+      <!-- Date Reference Controller -->
+      <section class="date-control-card">
+        <div class="date-info">
+          <div class="icon-circle">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+          <div>
+            <span class="date-label">Data de Referência</span>
+            <p class="date-value" id="currentDateDisplay">Hoje</p>
+          </div>
+        </div>
+
+        <div class="date-actions">
+          <label for="referenceDateInput" class="sr-only">Simular data</label>
+          <input type="date" id="referenceDateInput" class="input-date">
+          <button id="btnResetDate" class="btn-subtle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+              <path d="M3 3v5h5"/>
+            </svg>
+            Hoje
+          </button>
+        </div>
+      </section>
+
+      <!-- KPI Stat Cards -->
+      <section class="metrics-grid">
+        <div class="stat-card">
+          <div class="stat-header">
+            <span class="stat-title">Total de Aulas</span>
+            <div class="stat-icon-wrapper blue">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+            </div>
+          </div>
+          <div class="stat-body">
+            <div class="stat-number" id="kpiTotal">70</div>
+            <p class="stat-description">Carga total programada</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-header">
+            <span class="stat-title">Aulas Realizadas</span>
+            <div class="stat-icon-wrapper green">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            </div>
+          </div>
+          <div class="stat-body">
+            <div class="stat-number" id="kpiDone">19</div>
+            <p class="stat-description" id="kpiDoneMeta">19 aulas cumpridas</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-header">
+            <span class="stat-title">Aulas Restantes</span>
+            <div class="stat-icon-wrapper amber">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+          </div>
+          <div class="stat-body">
+            <div class="stat-number" id="kpiRemaining">51</div>
+            <p class="stat-description" id="kpiRemainingMeta">51 aulas a realizar</p>
+          </div>
+        </div>
+
+        <div class="stat-card stat-card-highlight">
+          <div class="stat-header">
+            <span class="stat-title">Taxa de Conclusão</span>
+            <div class="stat-icon-wrapper purple">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </div>
+          </div>
+          <div class="stat-body">
+            <div class="stat-number-wrapper">
+              <span class="stat-number" id="kpiPercentage">27.1%</span>
+            </div>
+            <div class="progress-track" aria-hidden="true">
+              <div class="progress-fill" id="kpiProgressBar" style="width: 27.1%"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Next Meeting Hero Spotlight Card -->
+      <section class="spotlight-card" id="nextMeetingCard">
+        <div class="spotlight-header">
+          <div class="tag-badge">
+            <span class="dot-pulse"></span>
+            Próximo Encontro
+          </div>
+          <span class="countdown-pill" id="nextCountdown">Em cálculo...</span>
+        </div>
+
+        <div class="spotlight-body">
+          <div class="spotlight-date-box" id="nextDateBox">
+            <span class="date-box-month" id="nextMonth">NOV</span>
+            <span class="date-box-day" id="nextDay">03</span>
+            <span class="date-box-weekday" id="nextWeekday">Ter</span>
+          </div>
+
+          <div class="spotlight-details">
+            <span class="module-breadcrumb" id="nextModule">Intermediário 6h - 3.872/23 Novo</span>
+            <h2 class="spotlight-title" id="nextTitle">Conceitos e Identificar o Perfil do empreendedor</h2>
+            
+            <div class="spotlight-info-grid">
+              <div class="info-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                <span>Horário: <strong id="nextTime">08:00</strong></span>
+              </div>
+              <div class="info-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <span id="nextLocation">Av. José Pinheiro Borges</span>
+              </div>
+            </div>
+
+            <p class="room-address" id="nextRoom">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+                <line x1="6" y1="6" x2="6.01" y2="6"/>
+                <line x1="6" y1="18" x2="6.01" y2="18"/>
+              </svg>
+              <span>Anhanguera Shopping Metrô Itaquera-SP/SP - Sala 09 (P) 20% B</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="spotlight-footer">
+          <div class="action-buttons">
+            <button id="btnAddToCalendar" class="btn-clean-primary" title="Adicionar evento ao Google Calendar / Outlook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              Adicionar à Agenda (.ics)
+            </button>
+            <button id="btnCopyRoom" class="btn-clean-secondary" title="Copiar endereço e sala">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              Copiar Localização
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Modules Progress Overview -->
+      <section class="section-block">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h3 class="section-title">Evolução por Módulo</h3>
+            <p class="section-subtitle">Distribuição dos 70 encontros nos blocos pedagógicos</p>
+          </div>
+        </div>
+        <div class="modules-grid" id="modulesGrid">
+          <!-- Gerado dinamicamente -->
+        </div>
+      </section>
+
+      <!-- Table & List Toolbar -->
+      <section class="content-panel">
+        <div class="panel-header">
+          <div class="search-container">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="text" id="searchInput" placeholder="Pesquisar tema, módulo, data ou endereço..." autocomplete="off">
+            <button id="btnClearSearch" class="btn-clear hidden" aria-label="Limpar busca">✕</button>
+          </div>
+
+          <div class="controls-container">
+            <select id="moduleSelect" class="clean-select" aria-label="Filtrar por módulo">
+              <option value="all">Todos os Módulos</option>
+              <option value="Integração para o Mundo do Trabalho">1. Integração para o Trabalho</option>
+              <option value="Intermediário 6h - 3.872/23 Novo">2. Intermediário</option>
+              <option value="Profissional Administrativo 6h - 3.872/23 Novo">3. Profissional Administrativo</option>
+              <option value="Projeto de Carreira">4. Projeto de Carreira</option>
+            </select>
+
+            <div class="segmented-control" role="tablist">
+              <button class="seg-btn active" data-status="all">Todos (<span id="countTabAll">70</span>)</button>
+              <button class="seg-btn" data-status="done">Concluídos (<span id="countTabDone">19</span>)</button>
+              <button class="seg-btn" data-status="pending">Restantes (<span id="countTabPending">51</span>)</button>
+            </div>
+
+            <div class="view-switcher">
+              <button id="viewTableBtn" class="view-btn active" title="Visualização em Tabela" aria-label="Tabela">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="8" y1="6" x2="21" y2="6"/>
+                  <line x1="8" y1="12" x2="21" y2="12"/>
+                  <line x1="8" y1="18" x2="21" y2="18"/>
+                  <line x1="3" y1="6" x2="3.01" y2="6"/>
+                  <line x1="3" y1="12" x2="3.01" y2="12"/>
+                  <line x1="3" y1="18" x2="3.01" y2="18"/>
+                </svg>
+              </button>
+              <button id="viewCardsBtn" class="view-btn" title="Visualização em Grade de Cards" aria-label="Cards">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="7" height="7"/>
+                  <rect x="14" y="3" width="7" height="7"/>
+                  <rect x="14" y="14" width="7" height="7"/>
+                  <rect x="3" y="14" width="7" height="7"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-meta-bar">
+          <span id="resultsCounter" class="results-text">Exibindo 70 encontros</span>
+        </div>
+
+        <!-- Render Container (Table / Cards) -->
+        <div class="meetings-view-area" id="meetingsContainer">
+          <!-- Inserido dinamicamente via JS -->
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Clean Footer -->
+    <footer class="app-footer">
+      <div class="footer-content">
+        <p class="footer-title">Programa de Aprendizagem Profissional • <strong>João Pedro Arruda de Souza</strong></p>
+        <p class="footer-info">Interface leve, responsiva e otimizada para monitoramento contínuo de frequência e estudos.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Micro Toast Notification -->
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
